@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { DailyComponent } from './daily/daily.component';
 import { TableComponent } from './table/table.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
   // all components are declare here
@@ -15,6 +17,8 @@ import { TableComponent } from './table/table.component';
     TestComponent,
     DailyComponent,
     TableComponent,
+    EmployeeComponent,
+    StudentComponent,
 
   ],
   imports: [

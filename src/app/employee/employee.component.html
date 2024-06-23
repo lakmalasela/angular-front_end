@@ -1,0 +1,75 @@
+{{userForm.value | json}}
+<br> <hr>
+{{userModel | json}}
+<form #userForm="ngForm">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" #name="ngModel"
+        [ngClass]="{ 'invalid-input': name.invalid && (name.dirty || name.touched) }"
+        pattern="^[A-Z][a-z]*(\s[A-Z][a-z]*)*$"
+        id="name" name="name"  [(ngModel)] = "userModel.name" required>
+    </div>
+    
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">
+        <div *ngIf="name.errors?.['required']">Name is required</div>
+        <div *ngIf="name.errors?.['pattern']">Enter a valid Name</div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)] = "userModel.email" required>
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="phone" class="form-control" id="phone" name="phone" [(ngModel)]="userModel.phone" required>
+    </div>
+    <div class="form-group">
+        <select name="topic" #topicModel="ngModel" id="topic" [(ngModel)]="userModel.topic"
+        [ngClass]="{ 'invalid-input': topicModel.invalid && (topicModel.dirty || topicModel.touched) }"
+        required>
+    <option value="">Select the Topic</option>
+    <option *ngFor="let topic of topics" [value]="topic">{{topic}}</option>
+</select>
+ 
+<div *ngIf="topicModel.invalid && (topicModel.dirty || topicModel.touched)" class="error-message">
+    <div *ngIf="topicModel.errors?.['required']">Topic is required</div>
+</div>
+
+     </div>
+    <div class="form-group">
+        Time Preference:
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="timePreference" value="Morning" id=""  [(ngModel)]="userModel.timePreference">
+            <label class="form-check-label" for="flexRadioDefault2">
+             Morning
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="timePreference" value="Evening" id=""  [(ngModel)]="userModel.timePreference">
+            <label class="form-check-label" for="flexRadioDefault2">
+             Evening
+            </label>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="subscribe" [(ngModel)]="userModel.subscribe">
+            <label class="form-check-label" for="flexCheckChecked">
+                Subscribe:
+            </label>
+          </div>
+    </div>
+ 
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<style>
+    .invalid-input {
+        border-color: red;
+    }
+    
+    .error-message {
+        color: red;
+    }
+    </style>
